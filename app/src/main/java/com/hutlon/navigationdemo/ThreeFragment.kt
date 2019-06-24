@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.fragment_three.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,15 +19,20 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class BlankFragment2 : Fragment() {
+class ThreeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank_fragment2, container, false)
+        return inflater.inflate(R.layout.fragment_three, container, false)
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        button2.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_threeFragment_to_blankFragment)
+        }
+    }
 }

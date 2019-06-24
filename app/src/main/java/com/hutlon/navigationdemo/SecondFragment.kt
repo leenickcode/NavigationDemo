@@ -2,12 +2,13 @@ package com.hutlon.navigationdemo
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import kotlinx.android.synthetic.main.fragment_blank.*
+import kotlinx.android.synthetic.main.fragment_second.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,29 +20,27 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class BlankFragment : Fragment() {
+class SecondFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false)
+        return inflater.inflate(R.layout.fragment_second, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Navigation.findNavController(view)
-        val bundle =Bundle()
-        bundle.putString("name","lee")
 
-        button.setOnClickListener {
-            //id就是nav_graph导航图里面的action id，就和startActivty一样
-            Navigation.findNavController(view).navigate(R.id.action_blankFragment_to_secondeFragment,bundle)
+        var name = arguments?.get("name")
+        Log.d("aaa", name as String?)
+            btn_back.setOnClickListener {
+                Navigation.findNavController(it).navigateUp()
+            }
+        btn_next.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_secondeFragment_to_threeFragment)
         }
-    }
-    fun  safeMode(){
-        val action = BlankFragmentDirections.actionBlankFragmentToSecondeFragment("aa")
-        Navigation.findNavController(view!!).navigate(action)
     }
 }
