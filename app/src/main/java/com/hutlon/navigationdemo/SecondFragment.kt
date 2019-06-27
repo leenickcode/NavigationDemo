@@ -34,8 +34,9 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var name = arguments?.get("name")
-        Log.d("aaa", name as String?)
+        var name = arguments?.getString("name")
+        var name1 = SecondFragmentArgs.fromBundle(arguments!!).name
+        Log.d("aaa",   SecondFragmentArgs.fromBundle(arguments!!).name)
             btn_back.setOnClickListener {
                 Navigation.findNavController(it).navigateUp()
             }
